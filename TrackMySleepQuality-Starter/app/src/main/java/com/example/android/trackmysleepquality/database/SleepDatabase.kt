@@ -33,19 +33,19 @@ abstract class SleepDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): SleepDatabase {
             synchronized(this) {
-                var instance = INSTANCE
+                var instances = INSTANCE
 
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
+                if (instances == null) {
+                    instances = Room.databaseBuilder(
                             context.applicationContext,
                             SleepDatabase::class.java,
                             "sleep_history_database"
                     )
                             .fallbackToDestructiveMigration()
                             .build()
-                    INSTANCE = instance
+                    INSTANCE = instances
                 }
-                return instance
+                return instances
             }
         }
     }
